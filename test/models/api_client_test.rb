@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class ApiClientTest < ActiveSupport::TestCase
+class APIClientTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

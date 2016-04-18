@@ -32,6 +32,7 @@ gem 'pundit'
 gem 'devise', git: 'git://github.com/plataformatec/devise', branch: :master
 gem 'kaminari'
 gem 'sidekiq'
+gem 'sidekiq-cron'
 
 gem 'elasticsearch-model'
 gem 'elasticsearch-persistence'

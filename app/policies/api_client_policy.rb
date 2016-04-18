@@ -1,4 +1,4 @@
-class ApiClientPolicy < ApplicationPolicy
+class APIClientPolicy < ApplicationPolicy
   def destroy?
     record.calls_count
   end

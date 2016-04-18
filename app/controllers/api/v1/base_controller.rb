@@ -21,7 +21,7 @@ class API::V1::BaseController < ActionController::Base
 
     def authenticate_token
       authenticate_with_http_token do |token, options|
-        @api_client = ApiClient.find_by(api_secret: token)
+        @api_client = APIClient.find_by(api_secret: token)
       end
     end
 

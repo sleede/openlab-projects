@@ -1,4 +1,4 @@
-class ApiClient < ApplicationRecord
+class APIClient < ApplicationRecord
   has_many :calls_count_tracings, dependent: :destroy
 
   has_secure_token :api_id
