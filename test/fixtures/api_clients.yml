@@ -3,13 +3,13 @@
 one:
   name: MyString
   calls_count: 1
-  api_id: MyString
-  api_secret: MyString
+  app_id: MyString
+  app_secret: MyString
   origin: MyString
 
 two:
   name: MyString
   calls_count: 1
-  api_id: MyString
-  api_secret: MyString
+  app_id: MyString
+  app_secret: MyString
   origin: MyString

@@ -19,8 +19,8 @@ ActiveRecord::Schema.define(version: 20160418105459) do
   create_table "api_clients", force: :cascade do |t|
     t.string   "name",        default: "", null: false
     t.integer  "calls_count", default: 0,  null: false
-    t.string   "api_id",                   null: false
-    t.string   "api_secret",               null: false
+    t.string   "app_id",                   null: false
+    t.string   "app_secret",               null: false
     t.string   "origin",                   null: false
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
