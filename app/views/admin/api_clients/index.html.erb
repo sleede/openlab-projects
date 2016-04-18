@@ -1,0 +1,17 @@
+<div class="row">
+  <h2 class="">Gestion des comptes client API</h2>
+  <div class="" id="api_clients">
+    <% @api_clients.each do |api_client| %>
+      <%= render 'admin/api_clients/api_client', api_client: api_client %>
+    <% end %>
+  </div>
+</div>
+
+<div class="row" id="new_api_client_triggered">
+  <div class="text-center">
+    <%= link_to 'Créer un nouveau compte client API', new_admin_api_client_path, remote: true, class: "btn btn-default" %>
+  </div>
+</div>
+
+<div class="row" id="api_client_container">
+</div>

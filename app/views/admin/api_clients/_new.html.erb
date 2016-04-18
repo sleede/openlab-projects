@@ -1,0 +1,13 @@
+<div class="col-md-6">
+  <%= form_for [:admin, api_client], remote: true do |f| %>
+    <div class="form-group">
+      <%= f.text_field :name, placeholder: 'Nom du compte', class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.text_field :origin, placeholder: 'http://www.fabmanager.lacasamate.fr', class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.submit 'Créer', class: "btn btn-default" %>
+    </div>
+  <% end %>
+</div>

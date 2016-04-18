@@ -1,0 +1,33 @@
+<div class="col-md-5 col-md-offset-4">
+  <h2>Édition de vos informations</h2>
+
+  <br>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    <%= devise_error_messages! %>
+
+    <div class="form-group">
+      <%= f.label :email %><br />
+      <%= f.email_field :email, autofocus: true, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :password, 'Mot de passe' %> <i>(laissez vide si vous ne voulez pas le changer)</i><br />
+      <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :password_confirmation, 'Confirmation du mot de passe' %><br />
+      <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :current_password, 'Mot de passe actuel' %> <i>(mot de passe nécessaire pour valider les changements)</i><br />
+      <%= f.password_field :current_password, autocomplete: "off", class: "form-control" %>
+    </div>
+
+    <%= f.submit "Enregistrer", class: "btn btn-default" %>
+  <% end %>
+
+  <br>
+  <%= link_to "Back", :back %>
+</div>

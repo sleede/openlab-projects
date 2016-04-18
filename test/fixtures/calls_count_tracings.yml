@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  api_client: one
+  calls_count: 1
+  at: 2016-04-18 12:54:59
+
+two:
+  api_client: two
+  calls_count: 1
+  at: 2016-04-18 12:54:59

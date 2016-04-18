@@ -1,0 +1,21 @@
+<nav class="navbar navbar-default">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <% root_path = user_signed_in? ? authenticated_root_path : unauthenticated_root_path %>
+      <%= link_to "OpenFabLab", root_path, class: "navbar-brand" %>
+    </div>
+    <div id="navbar" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li><%= link_to 'Connexion', new_user_session_path unless user_signed_in? %></li>
+        <li><%= link_to 'Mon compte', edit_user_registration_path if user_signed_in? %></li>
+        <li><%= link_to 'Se déconnecter', destroy_user_session_path, method: :delete if user_signed_in? %></li>
+      </ul>
+    </div>
+  </div>
+</nav>

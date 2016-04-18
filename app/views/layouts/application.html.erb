@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Openfablab</title>
+    <%= csrf_meta_tags %>
+    <%= action_cable_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => 'reload' %>
+  </head>
+  <body>
+    <%= render 'shared/navbar' %>
+
+    <div class="container">
+
+      <div id="flash_messages">
+        <%= render 'shared/flash_messages' %>
+      </div>
+
+      <%= yield %>
+    </div>
+  </body>
+</html>
