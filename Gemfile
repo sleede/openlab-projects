@@ -35,7 +35,7 @@ gem 'sidekiq'
 gem 'sidekiq-cron'
 
 gem 'elasticsearch-model'
-gem 'elasticsearch-persistence'
+gem 'elasticsearch-persistence', require: 'elasticsearch/persistence/model'
 gem 'elasticsearch-rails'
 gem 'api-pagination'
 gem 'oj'

@@ -1,0 +1,35 @@
+---
+- app_id: G9kexy5WLG2VxGAE4EZgTHA6
+  project_id: 124
+  name: "Création T-shirt Personnalisé 8 Mars"
+  description: "Nous sommes allés à Grenoble, mardi 8 mars avec Malanto. Nous avons rencontré Diego, qui nous a fait une visite détaillée de la Casemate, qui est un musée où il y a une partie exposition et une autre partie où l’on conçoit.Le but de cette rencontre était de fabriquer le tee-shirt que nous avions conçu à l’aide d’Inkscape.\r\nNous avons travaillé au préalable sur Inkscape, c’est vrai que Malanto a  beaucoup œuvré sur nos constructions. \r\nDiego nous a montré les différentes machines qui servent à créer, telle que l’imprimante laser.\r\nIl nous a fait une petite démo de ce que cela pouvait faire, il nous a concocté quelque chose en bois, je ne sais pas comment vous expliquer ce que c’est, mais c’est spécialement à l’effigie de l’E2C.Ensuite, on est allé manger à l’E2C de Grenoble où on a rencontré 3 jeunes et cela s’est très bien passé avec eux. Ils nous ont bien reçus.\r\nPuis, après tout ça, nous sommes retournés à la Casemate pour fabriquer (fablab signifie fabriquer et élaborer) notre tee-shirt. \r\nNous avons, avec l’aide de Diego, transféré nos créations de l’outil Inkscape à Illustrator, car c’est le logiciel qu’ils utilisent pour la découpeuse vinyle. C’était aussi pour fignoler nos travaux.\r\nAprès, nous sommes passés sur la machine et toute seule, en faisant quelques réglages bien sûr, la découpeuse vinyle a fait le travail, nous n’ avions plus qu’à faire le plus gros, c’est-à-dire retirer à l’aide d’une pince à épiler ce qui allait ressortir sur notre tee-shirt.\r\nA la fin, nos tee-shirts respectifs étaient très bien ressortis et comme récompense,  Diego nous a montré l’exposition qui avait pour thème le climat. Nous avons regardé à l’aide d’un casque oculus les effets du réchauffement climatique.J’ai apprécié et je pense que c’est partagé, cette sortie où nous nous sommes sentis comme des « artistes ». Ce que j’ai aimé par-dessus c’est que Diego a bien pris le temps de nous expliquer et nous détailler tout ce qui se passe à la Casemate. \r\n\r\nLes pièces jointes ont été améliorées sur place, les versions en ligne ne sont pas définitives."
+  tags: "vêtements mode tissu"
+  machines:
+  - Découpeuse vinyle
+  components:
+  - vinyle
+  themes:
+  - autre
+  author: Malanto Razafindranaivo
+  collaborators: []
+  steps_body: ""
+  image_path: /uploads/project_image/818/project_image.png
+
+- app_id: G9kexy5WLG2VxGAE4EZgTHA6
+  project_id: 123
+  name: "Table basse tactile DIY avec un ecran TV 32\", Raspberry Pi, CCD sensor et Arduino Teensy"
+  description: "\r\n      Mon projet est détaillé sur http://www.instructables.com/id/Touch-Screen-Coffee-Table-DIY-With-32-TV-and-Low-C/Un grand merci a l'équipe du Fablab pour leur aide :-). Les découpes et les gravures ont été faite avec la scie sauteuse et la graveuse laser Trotec du Fablab! Voici l'introduction du projet (en anglais) : Hi !I have been \r\nreading about DIY touch screen table projects for a while now, and I \r\nfind most of them very complicated. Often They imply using a \r\nvideoprojector, reflection mirror and IR camera. The result gives you a \r\ncomplete multi touch screen solution, but you need some depth for the \r\nvideoprojector to have a big screen. Not the best solution for a coffee \r\ntable... I made this tutorial to help people to build their own touch screen solution based on any flat screen TV. It uses light triangulation technology\r\n to read the coordinates. This method is quite cheap ( the priciest part\r\n is the TV), with a good quality image and you can make the table almost\r\n as small and as thin as your TV is. Of course, nothing is \r\nperfect and with this solution it's not possible to build a 100% \r\nmulti-touch screen and it's hard to cover the entire screen area. But \r\ndepending on the way you make it you can have some interesting results. \r\nPlus, I am sure there are a lot of possibilities I haven't thought about\r\n to improve this. \r\n    "
+  tags: "raspberry tactile arduino"
+  machines:
+  - Trotec Speedy 400 laser
+  components:
+  - Bois Medium
+  themes:
+  - capteurs
+  - arduino
+  - jeu
+  author: Jean Perardel
+  collaborators:
+  - Thibaut Courtois
+  steps_body: ""
+  image_path: /uploads/project_image/779/project_image.jpg

@@ -1,15 +1,8 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  calls_count: 1
-  app_id: MyString
-  app_secret: MyString
-  origin: MyString
-
-two:
-  name: MyString
-  calls_count: 1
-  app_id: MyString
-  app_secret: MyString
-  origin: MyString
+  name: FabManager LaCasemate
+  calls_count: 5
+  app_id: G9kexy5WLG2VxGAE4EZgTHA6
+  app_secret: 6a2ca7qz9FrvwR2WscYR34iS
+  origin: http://www.fablab.lacasemate.fr
