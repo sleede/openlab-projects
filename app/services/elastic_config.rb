@@ -1,8 +1,11 @@
 module ElasticConfig
   def self.settings
     {
-      number_of_shards: 5,
-      number_of_replicas: 0,
+      index: {
+        number_of_shards: Rails.env.test? ? 1 : 5,
+        number_of_replicas: 0,
+        refresh_interval: "1s" # default value
+      },
       analysis: {
         filter: {
           "french_elision": {

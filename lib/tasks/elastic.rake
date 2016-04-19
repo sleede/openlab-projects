@@ -28,7 +28,7 @@ namespace :openfablab do
     end
 
     task seed: :environment do
-      projects_attributes = YAML.load(File.open('test/fixtures/projects.yml').read)
+      projects_attributes = YAML.load(File.open('test/elastic_fixtures/projects.yml').read)
       projects_attributes.each do |project_attributes|
         Project.create project_attributes
       end
@@ -36,7 +36,7 @@ namespace :openfablab do
 
     private
       def elastic_client
-        @elastic_client ||= Elasticsearch::Client.new host: "http://#{Rails.application.secrets.elasticsearch_host}:9200", log: true
+        @elastic_client ||= Elasticsearch::Client.new host: "http://#{Rails.application.secrets.elasticsearch_host}:9200", log: (Rails.env.test? ? false : true)
       end
 
       def index_name

@@ -3,16 +3,18 @@ class API::V1::BaseController < ActionController::Base
   before_action :authenticate
   before_action :increment_calls_count
 
-  #rescue_from ActiveRecord::RecordNotFound, with: :not_found
-  rescue_from ParameterError, with: :bad_request
+  rescue_from Elasticsearch::Persistence::Repository::DocumentNotFound, with: :not_found
+  rescue_from ActionController::ParameterMissing, with: :bad_request
+
+  helper_method :current_api_client
 
   protected
     def not_found
-      render json: { error: "Not found" }, status: :not_found
+      render json: { errors: ["Not found"] }, status: :not_found
     end
 
     def bad_request
-      render json: { error: "Bad request" }, status: :bad_request
+      render json: { errors: ["Bad request"] }, status: :bad_request
     end
 
     def authenticate

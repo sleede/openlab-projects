@@ -14,6 +14,7 @@
   collaborators: []
   steps_body: ""
   image_path: /uploads/project_image/818/project_image.png
+  project_path: /projects/creation-t-shirt-personnalise-8-mars
 
 - app_id: G9kexy5WLG2VxGAE4EZgTHA6
   project_id: 123
@@ -33,3 +34,4 @@
   - Thibaut Courtois
   steps_body: ""
   image_path: /uploads/project_image/779/project_image.jpg
+  project_path: /projects/touch-screen-coffee-table-diy-with-32-tv-and-low-cost-ccd-sensor
