@@ -22,6 +22,7 @@ class API::V1::ProjectsController < API::V1::BaseController
   def create
     project = Project.new project_params
     project.project_id = params[:project][:id] || params[:project][:project_id]
+    project.meta = project_meta_params
     project.app_id = current_api_client.app_id
 
     if project.save
@@ -54,6 +55,10 @@ class API::V1::ProjectsController < API::V1::BaseController
 
     def project_id
       Project.elastic_id(api_client: current_api_client, project_id: params[:id])
+    end
+
+    def project_meta_params
+      params.require(:project).permit(:updated_at, :created_at, :published_at)
     end
 
     def project_params

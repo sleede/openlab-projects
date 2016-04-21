@@ -34,6 +34,13 @@ class Project
   attribute :steps_body,    String,        mapping: multi_analyzers,                          default: ""
   attribute :image_path,    String,        mapping: { index: 'not_analyzed', type: 'string' }
   attribute :project_path,  String,        mapping: { index: 'not_analyzed', type: 'string' }
+  attribute :meta,          Hash,          mapping: { type: 'object',
+                                                      properties: {
+                                                        created_at: { type: 'date', index: 'not_analyzed' },
+                                                        updated_at: { type: 'date', index: 'not_analyzed' },
+                                                        published_at: { type: 'date', index: 'not_analyzed' }
+                                                      }
+                                           }
 
   # validations
   validates :app_id, :project_id, :project_path, presence: true
@@ -49,6 +56,12 @@ class Project
     define_method "#{attribute}=" do |val|
       super(val.is_a?(Array) ? val.join(' ') : val)
     end
+  end
+
+  def meta=(meta_value)
+    super(meta_value.each do |key, value|
+      meta_value[key] = DateTime.parse(value) if key.to_sym.in?([:created_at, :updated_at, :published_at])
+    end)
   end
 
   def self.elastic_id(api_client: nil, app_id: nil, project_id:)
