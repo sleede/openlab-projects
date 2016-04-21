@@ -1,6 +1,6 @@
 module Search
   module Project
-    def self.full_text(q)
+    def self.full_text(q, opts = {})
       query = {
         query: {
           multi_match: {
@@ -21,7 +21,7 @@ module Search
         }
       }
 
-      ::Project.search(query)
+      ::Project.search(query, opts)
     end
   end
 end
