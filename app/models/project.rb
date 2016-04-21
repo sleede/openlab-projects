@@ -20,6 +20,7 @@ class Project
   }
 
   # attributes
+  attribute :slug,          String,        mapping: { index: 'not_analyzed', type: 'string' }
   attribute :app_id,        String
   attribute :project_id,    String
   attribute :name,          String,        mapping: multi_analyzers,                          default: ""

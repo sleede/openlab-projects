@@ -9,19 +9,34 @@ class Admin::APIClientsController < ApplicationController
     @api_client = APIClient.new
   end
 
+  def edit
+    @api_client = APIClient.find(params[:id])
+  end
+
+  def update
+    @api_client = APIClient.find(params[:id])
+    if @api_client.update(api_client_params)
+      flash.now[:success] = "Le compte client API a bien été modifié."
+    else
+      flash.now[:error] = "Le formulaire possède des erreurs."
+      render :edit
+    end
+  end
+
   def create
     @api_client = APIClient.new(api_client_params)
     if @api_client.save
-      flash[:notice] = "Le compte client API a bien été créé."
+      flash.now[:success] = "Le compte client API a bien été créé."
     else
-      flash[:error] = "La création du compte client API a échouée."
+      flash.now[:error] = "La création du compte client API a échouée."
     end
   end
 
   def destroy
     @api_client = APIClient.find(params[:id])
+    authorize @api_client
     @api_client.destroy!
-    flash[:notice] = "Le compte client API a bien été supprimé."
+    flash.now[:notice] = "Le compte client API a bien été supprimé."
   end
 
   private

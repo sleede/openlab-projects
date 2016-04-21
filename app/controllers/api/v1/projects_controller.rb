@@ -2,7 +2,7 @@ class API::V1::ProjectsController < API::V1::BaseController
   def index
     raise ActionController::ParameterMissing, "params q is needed" if params[:q].blank?
 
-    @results = Search::Project.full_text(params[:q]).results
+    @projects = Search::Project.full_text(params[:q]).results
   end
 
   def create
@@ -43,7 +43,7 @@ class API::V1::ProjectsController < API::V1::BaseController
     end
 
     def project_params
-      params.require(:project).permit(:name, :description, :tags, :machines, :components, :themes,
+      params.require(:project).permit(:slug, :name, :description, :tags, :machines, :components, :themes,
         :author, :collaborators, :steps_body, :project_path, :image_path
       )
     end
