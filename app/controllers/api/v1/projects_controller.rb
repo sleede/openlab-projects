@@ -2,7 +2,7 @@ class API::V1::ProjectsController < API::V1::BaseController
   include Concerns::PaginationHeaders
 
   def index
-    raise ActionController::ParameterMissing, "params q is needed" if params[:q].blank?
+    #raise ActionController::ParameterMissing, "params q is needed" if params[:q].blank?
 
     api_clients = APIClient.pluck(:app_id, :name)
     @api_client_names = Hash[api_clients.map{ |api_client| [api_client[0], api_client[1]] }]
@@ -10,7 +10,11 @@ class API::V1::ProjectsController < API::V1::BaseController
 
     page, per_page, from = PaginationParams.clean(params[:page], params[:per_page])
 
-    result = Search::Project.full_text(params[:q], from: from, size: per_page)
+    result = if params[:q].present?
+      Search::Project.full_text(params[:q], from: from, size: per_page)
+    else
+      Project.search(sort: { 'meta.published_at': { order: :desc } }, from: from, size: per_page)
+    end
 
     set_pagination_headers(total: result.total, page: page, per_page: per_page)
 
@@ -35,7 +39,7 @@ class API::V1::ProjectsController < API::V1::BaseController
   def update
     project = find_project
 
-    if project.update project_params
+    if project.update project_params.merge(meta: project_meta_params)
       head :ok
     else
       render json: { errors: project.errors }, status: :unprocessable_entity
