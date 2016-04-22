@@ -34,11 +34,11 @@ class Project
   attribute :steps_body,    String,        mapping: multi_analyzers,                          default: ""
   attribute :image_path,    String,        mapping: { index: 'not_analyzed', type: 'string' }
   attribute :project_path,  String,        mapping: { index: 'not_analyzed', type: 'string' }
-  attribute :meta,          Hash,          mapping: { type: 'object',
+  attribute :meta,  Hash[Symbol => Time],  mapping: { type: 'object',
                                                       properties: {
-                                                        created_at: { type: 'date', index: 'not_analyzed' },
-                                                        updated_at: { type: 'date', index: 'not_analyzed' },
-                                                        published_at: { type: 'date', index: 'not_analyzed' }
+                                                        created_at: { type: 'date' },
+                                                        updated_at: { type: 'date' },
+                                                        published_at: { type: 'date' }
                                                       }
                                            }
 
@@ -58,11 +58,22 @@ class Project
     end
   end
 
-  def meta=(meta_value)
-    super(meta_value.each do |key, value|
-      meta_value[key] = DateTime.parse(value) if key.to_sym.in?([:created_at, :updated_at, :published_at])
-    end)
-  end
+  # at the moment useless code (and not finished) because define meta as Hash[Symbol => Time] do the trick because all its properties are Time
+  # def meta=(meta_value)
+  #   super(meta_value.each do |key, value|
+  #     meta_value[key] = DateTime.parse(value) if key.to_sym.in?([:created_at, :updated_at, :published_at]) and value.is_a?(String)
+  #   end)
+  # end
+  #
+  # def meta
+  #   super.each_with_object({}) do |(key, value), hash|
+  #     if key.to_sym.in?([:created_at, :updated_at, :published_at]) and value.is_a?(String)
+  #       hash[key.to_sym] = DateTime.parse(value)
+  #     else
+  #       hash[key.to_sym] = value
+  #     end
+  #   end
+  # end
 
   def self.elastic_id(api_client: nil, app_id: nil, project_id:)
     raise ArgumentError, "api_client or app_id have to be given" if api_client.nil? and app_id.nil?
