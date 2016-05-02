@@ -1,4 +1,4 @@
-namespace :openfablab do
+namespace :openlab do
   namespace :elastic do
 
     task init_index: :environment do
