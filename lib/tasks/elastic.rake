@@ -22,9 +22,9 @@ namespace :openlab do
     end
 
     task setup: :environment do
-      Rake::Task["openfablab:elastic:delete_index"].invoke
-      Rake::Task["openfablab:elastic:init_index"].invoke
-      Rake::Task["openfablab:elastic:put_mappings"].invoke
+      Rake::Task["openlab:elastic:delete_index"].invoke
+      Rake::Task["openlab:elastic:init_index"].invoke
+      Rake::Task["openlab:elastic:put_mappings"].invoke
     end
 
     task seed: :environment do
