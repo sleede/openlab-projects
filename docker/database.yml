@@ -1,0 +1,27 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 25
+  username: postgres
+  host: <%= Rails.application.secrets.postgres_host %>
+  password: <%= Rails.application.secrets.postgres_password %>
+
+development:
+  <<: *default
+  database: openlab_development
+
+# Warning: The database defined as "test" will be erased and
+# re-generated from your development database when you run "rake".
+# Do not set this db to the same as development or production.
+test:
+  <<: *default
+  database: openlab_test
+
+staging:
+  <<: *default
+  database: openlab_staging
+
+
+production:
+  <<: *default
+  database: openlab_production

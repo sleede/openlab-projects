@@ -44,3 +44,5 @@ gem 'elasticsearch-persistence', require: 'elasticsearch/persistence/model'
 gem 'elasticsearch-rails'
 gem 'api-pagination'
 gem 'oj'
+
+gem 'rails_12factor', group: :production

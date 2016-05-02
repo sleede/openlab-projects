@@ -1,0 +1,32 @@
+# Ignore bundler config.
+.bundle
+vendor/cache
+
+config/database.yml
+
+# Ignore the default SQLite database.
+db/*.sqlite3
+db/*.sqlite3-journal
+
+# Ignore all logfiles and tempfiles.
+log
+tmp
+
+public/uploads
+public/assets
+/uploads
+test
+
+*.DS_Store
+.idea
+.byebug_history
+
+.DS_Store
+
+.vagrant
+Vagrantfile
+
+.git*
+
+Dockerfile
+docker-compose*
