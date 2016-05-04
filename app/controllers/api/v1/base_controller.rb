@@ -32,7 +32,7 @@ class API::V1::BaseController < ActionController::Base
     end
 
     def render_unauthorized
-      render json: { error: 'Bad credentials' }, status: 401
+      render json: { errors: ['Bad credentials'] }, status: 401
     end
 
   private
