@@ -19,7 +19,7 @@ class ProjectsTest < ActionDispatch::IntegrationTest
   end
 
   # projects#index
-  test "projects#index needs a param q" do
+  test "projects#index" do
     get api_v1_projects_path, params: { q: 'projet' }, headers: default_headers(api_client: @api_client)
     json_resp = json_response(response.body)
 
@@ -29,7 +29,7 @@ class ProjectsTest < ActionDispatch::IntegrationTest
     assert json_resp[:projects][0].key?(:project_url)
 
     get api_v1_projects_path, params: { }, headers: default_headers(api_client: @api_client)
-    assert_equal 400, response.status
+    assert_equal 200, response.status
   end
 
   # projects#create
