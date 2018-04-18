@@ -9,4 +9,4 @@ json.projects @projects do |project|
   json.project_url "#{@api_client_origins[project.app_id]}#{project.project_path}"
 end
 
-json.merge!(@pagination_meta)
+json.merge!(@pagination_meta.to_hash)
