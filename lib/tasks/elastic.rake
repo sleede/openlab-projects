@@ -36,7 +36,7 @@ namespace :openlab do
 
     private
       def elastic_client
-        @elastic_client ||= Elasticsearch::Client.new host: "http://#{Rails.application.secrets.elasticsearch_host}:9200", log: (Rails.env.test? ? false : true)
+        @elastic_client ||= Elasticsearch::Client.new host: "http://#{Rails.application.secrets.elasticsearch_host}:#{Rails.application.secrets.elasticsearch_port}", log: (Rails.env.test? ? false : true)
       end
 
       def index_name
