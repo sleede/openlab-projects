@@ -43,6 +43,6 @@ class ActionDispatch::IntegrationTest
     end
 
     def elastic_client
-      @elastic_client ||= Elasticsearch::Client.new host: "http://#{Rails.application.secrets.elasticsearch_host}:9200", log: false
+      @elastic_client ||= Elasticsearch::Client.new host: "http://#{Rails.application.secrets.elasticsearch_host}:#{Rails.application.secrets.elasticsearch_port}", log: false
     end
 end
