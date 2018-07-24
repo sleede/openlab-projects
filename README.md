@@ -1,5 +1,12 @@
 ## README
 
+### install project
+
+```bash
+gem install bundler
+bundle
+```
+
 ### command to test analyzers
 
 ```bash
