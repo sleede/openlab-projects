@@ -2,6 +2,7 @@ FROM ruby:2.3
 MAINTAINER team sleede
 
 # cf: nginx Dockerfile : https://github.com/nginxinc/docker-nginx
+RUN apt-get update && apt-get install -y apt-transport-https
 RUN curl https://nginx.org/keys/nginx_signing.key | apt-key add -
 RUN echo "deb http://nginx.org/packages/mainline/debian/ jessie nginx" >> /etc/apt/sources.list
 ENV NGINX_VERSION 1.9.7-1~jessie
