@@ -1,7 +1,8 @@
-FROM ruby:2.3
+FROM ruby:2.3-jessie
 MAINTAINER team sleede <contact@sleede.com>
 
 RUN apt-get clean && apt-get update && apt-get install -y gnupg1-curl apt-transport-https
+
 # cf: nginx Dockerfile : https://github.com/nginxinc/docker-nginx
 RUN apt-key adv --fetch-keys https://nginx.org/keys/nginx_signing.key
 RUN echo "deb http://nginx.org/packages/mainline/debian/ jessie nginx" >> /etc/apt/sources.list
