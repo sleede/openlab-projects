@@ -1,11 +1,11 @@
 FROM ruby:2.3
-MAINTAINER team sleede
+MAINTAINER team sleede <contact@sleede.com>
 
 RUN apt-get clean && apt-get update && apt-get install -y gnupg1-curl apt-transport-https
 # cf: nginx Dockerfile : https://github.com/nginxinc/docker-nginx
 RUN apt-key adv --fetch-keys https://nginx.org/keys/nginx_signing.key
 RUN echo "deb http://nginx.org/packages/mainline/debian/ jessie nginx" >> /etc/apt/sources.list
-ENV NGINX_VERSION 1.9.7-1~jessie
+ENV NGINX_VERSION 1.15.2
 
 # Install apt based dependencies required to run Rails as
 # well as RubyGems. As the Ruby image itself is based on a
