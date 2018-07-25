@@ -1,9 +1,9 @@
 FROM ruby:2.3
 MAINTAINER team sleede
 
-RUN apt-get clean
+RUN apt-get clean && sudo apt-get update && sudo apt-get install gnupg-curl apt-transport-https
 # cf: nginx Dockerfile : https://github.com/nginxinc/docker-nginx
-RUN wget -q0 - https://nginx.org/keys/nginx_signing.key | apt-key add -
+RUN apt-key adv --fetch-keys https://nginx.org/keys/nginx_signing.key
 RUN echo "deb http://nginx.org/packages/mainline/debian/ jessie nginx" >> /etc/apt/sources.list
 ENV NGINX_VERSION 1.9.7-1~jessie
 
