@@ -155,7 +155,7 @@ GEM
     oj (2.15.0)
     orm_adapter (0.5.0)
     pg (0.18.4)
-    puma (3.4.0)
+    puma (3.10.0)
     pundit (1.1.0)
       activesupport (>= 3.0.0)
     rack (2.0.5)
