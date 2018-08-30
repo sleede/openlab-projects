@@ -3,11 +3,38 @@
 ### dev env
 
 Prerequisites :
-- RVM
+- RVM (see http://rvm.io/)
 - ElasticSearch
 - PostgreSQL
 - Redis
 
+#### Install ElasticSearch 1.7 with docker
+```bash
+docker run --restart=always -d --name openlab-elastic \
+  -v /path.to.docker/openlab/elasticsearch/config:/usr/share/elasticsearch/config \
+  -v /path.to.docker/openlab/elasticsearch:/usr/share/elasticsearch/data \
+  -v /path.to.docker/openlab/elasticsearch/plugins:/usr/share/elasticsearch/plugins \
+  -v /path.to.docker/openlab/elasticsearch/backups:/usr/share/elasticsearch/backups \
+  --network openlab --ip 172.19.0.2 \
+  elasticsearch:1.7
+```
+
+#### Install Redis with docker
+```bash
+docker run --restart=always -d --name=openlab-redis \
+  -v /path.to.docker/openlab/redis:/data \
+  --network openlab --ip 172.19.0.3 \
+  redis:3 redis-server --appendonly yes 
+```
+
+#### Setup PostgreSQL database
+```bash
+bundle exec rake db:create
+bundle exec rake db:migrate
+bundle exec rake db:seed
+```
+
+#### Install OpenLab-projects for development
 ```bash
 gem install bundler
 bundle
