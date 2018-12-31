@@ -4,6 +4,7 @@
 
 - Updated rake (2.0.5 -> 2.0.6) to fix [CVE-2018-16471](https://nvd.nist.gov/vuln/detail/CVE-2018-16471) and [CVE-2018-16470](https://nvd.nist.gov/vuln/detail/CVE-2018-16470)
 - Updated loofah (2.2.2 -> 2.2.3) to fix [CVE-2018-16468](https://github.com/flavorjones/loofah/issues/154)
+- Updated ffi (1.9.10 -> 1.9.24) to fix [CVE-2018-1000201](https://nvd.nist.gov/vuln/detail/CVE-2018-1000201)
 
 ## v1.0.1 2018 July 25
 
