@@ -1,5 +1,10 @@
 # Changelog OpenLab-Projects
 
+## v1.0.2 2018 December 31
+
+- Updated rake (2.0.5 -> 2.0.6) to fix [CVE-2018-16471](https://nvd.nist.gov/vuln/detail/CVE-2018-16471) and [CVE-2018-16470](https://nvd.nist.gov/vuln/detail/CVE-2018-16470)
+- Updated loofah (2.2.2 -> 2.2.3) to fix [CVE-2018-16468](https://github.com/flavorjones/loofah/issues/154)
+
 ## v1.0.1 2018 July 25
 
 - Updated loofah (2.0.3 -> 2.2.2) to fix [CVE-2018-8048](https://github.com/flavorjones/loofah/issues/144)
