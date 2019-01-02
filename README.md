@@ -43,6 +43,11 @@ cp config/database.yml.default config/database.yml
 foreman s
 ```
 
+#### Emails
+
+Access `http://localhost:3300/letter_opener` to see the emails received. 
+This interface is available only in development.
+
 ### prod env
 
 We use docker-compose to run the app in production.

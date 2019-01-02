@@ -31,6 +31,7 @@ group :development do
   gem 'awesome_print'
   gem 'letter_opener'
   gem 'foreman'
+  gem 'letter_opener_web', '~> 1.0'
 end
 
 gem 'pundit'
