@@ -1,0 +1,40 @@
+version: '2'
+services:
+  openlab-projects:
+    image: sleede/openlab-projects
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      RAILS_ENV: production
+      RACK_ENV: production
+    env_file:
+      - ${PWD}/config/env
+    volumes:
+      - ${PWD}/public/assets:/usr/src/app/public/assets
+      - ${PWD}/log:/var/log/supervisor
+      - ${PWD}/config/nginx:/etc/nginx/conf.d
+      - ${PWD}/letsencrypt/etc:/etc/letsencrypt
+    depends_on:
+      - postgres
+      - redis
+      - elasticsearch
+    restart: always
+
+  postgres:
+    image: postgres:9.4
+    volumes:
+      - ${PWD}/postgresql:/var/lib/postgresql/data
+    restart: always
+
+  elasticsearch:
+    image: elasticsearch:1.7
+    volumes:
+      - ${PWD}/elasticsearch:/usr/share/elasticsearch/data
+    restart: always
+
+  redis:
+    image: redis:3.0
+    volumes:
+      - ${PWD}/redis:/data
+    restart: always
