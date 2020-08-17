@@ -79,5 +79,6 @@ docker run --restart=always -d --name=openlab \
              -v /home/core/openlab/config/nginx:/etc/nginx/conf.d \
              -v /home/core/openlab/public/assets:/usr/src/app/public/assets \
              -v /home/core/openlab/log:/var/log/supervisor \
+             -v /home/core/openlab/letsencrypt/etc:/etc/letsencrypt \
              sleede/openlab-projects
 ```

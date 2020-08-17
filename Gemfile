@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 
-gem 'rails', '>= 5.0.0.beta3', '< 5.1'
+gem 'rails', '5.0.7'
 gem 'pg'
 
 gem 'puma'
@@ -34,14 +34,14 @@ group :development do
 end
 
 gem 'pundit'
-gem 'devise', git: 'git://github.com/plataformatec/devise', branch: :master
-gem 'kaminari'
+gem 'devise'
+gem 'kaminari', '0.17.0'
 gem 'sidekiq'
 gem 'sidekiq-cron'
 
-gem 'elasticsearch-model'
-gem 'elasticsearch-persistence', require: 'elasticsearch/persistence/model'
-gem 'elasticsearch-rails'
+gem 'elasticsearch-model', '0.1.8'
+gem 'elasticsearch-persistence', '0.1.8', require: 'elasticsearch/persistence/model'
+gem 'elasticsearch-rails', '0.1.8'
 gem 'api-pagination'
 gem 'oj'
 

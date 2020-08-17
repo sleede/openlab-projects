@@ -26,10 +26,10 @@ end
 class ActionDispatch::IntegrationTest
 
   def setup
-    Rake::Task["openfablab:elastic:delete_index"].invoke
-    Rake::Task["openfablab:elastic:init_index"].invoke
-    Rake::Task["openfablab:elastic:put_mappings"].invoke
-    Rake::Task["openfablab:elastic:seed"].invoke
+    Rake::Task["openlab:elastic:delete_index"].invoke
+    Rake::Task["openlab:elastic:init_index"].invoke
+    Rake::Task["openlab:elastic:put_mappings"].invoke
+    Rake::Task["openlab:elastic:seed"].invoke
     refresh_elastic_index
   end
 
@@ -43,6 +43,6 @@ class ActionDispatch::IntegrationTest
     end
 
     def elastic_client
-      @elastic_client ||= Elasticsearch::Client.new host: "http://#{Rails.application.secrets.elasticsearch_host}:9200", log: false
+      @elastic_client ||= Elasticsearch::Client.new host: "http://#{Rails.application.secrets.elasticsearch_host}:#{Rails.application.secrets.elasticsearch_port}", log: false
     end
 end

@@ -1,4 +1,13 @@
+
 # Changelog OpenLab-Projects
+
+## Next release
+
+- extracts into env variable ELASTICSEARCH_PORT
+- updates all gems except those concerning elasticsearch
+
+TODO:
+- set ELASTICSEARCH_PORT variable
 
 ## v1.0.2 2018 December 31
 
@@ -13,4 +22,4 @@
 - Updated rails-html-sanitizer (1.0.3 -> 1.0.4) to fix [CVE-2017-18258](https://nvd.nist.gov/vuln/detail/CVE-2017-18258)
 - Updated rails (5.0.0.beta3 -> 5.0.0.rc2) to fix nokogiri dependency update
 - Fixed Dockerfile (ruby image was updated by the owner)
-- Added deployment instructions to the README
+- Added deployment instructions 

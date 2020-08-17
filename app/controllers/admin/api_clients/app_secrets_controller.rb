@@ -1,4 +1,4 @@
-class Admin::APIClients::APISecretsController < ApplicationController
+class Admin::APIClients::AppSecretsController < ApplicationController
   before_action :authenticate_user!
 
   def update
