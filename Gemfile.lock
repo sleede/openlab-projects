@@ -285,7 +285,7 @@ DEPENDENCIES
   pundit
   rails (= 5.0.7)
   rails_12factor
-  sass-rails (~> 5.0)
+  sassc-rails
   sidekiq
   sidekiq-cron
   spring

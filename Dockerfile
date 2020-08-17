@@ -1,10 +1,11 @@
-FROM ruby:2.3
-MAINTAINER team sleede
+FROM ruby:2.3-jessie
+MAINTAINER team sleede <contact@sleede.com>
+
+RUN apt-get clean && apt-get update && apt-get install -y gnupg-curl apt-transport-https
 
 # cf: nginx Dockerfile : https://github.com/nginxinc/docker-nginx
-RUN apt-key adv --keyserver hkp://pgp.mit.edu:80 --recv-keys 573BFD6B3D8FBC641079A6ABABF5BD827BD9BF62
+RUN apt-key adv --fetch-keys https://nginx.org/keys/nginx_signing.key
 RUN echo "deb http://nginx.org/packages/mainline/debian/ jessie nginx" >> /etc/apt/sources.list
-
 ENV NGINX_VERSION 1.9.7-1~jessie
 
 # Install apt based dependencies required to run Rails as
@@ -12,6 +13,7 @@ ENV NGINX_VERSION 1.9.7-1~jessie
 # Debian image, we use apt-get to install those.
 RUN apt-get update && \
     apt-get install -y \
+      libssl1.0.0 \
       nginx=${NGINX_VERSION} \
       nodejs \
       supervisor
