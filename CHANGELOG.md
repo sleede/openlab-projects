@@ -6,6 +6,7 @@
 - extracts into env variable ELASTICSEARCH_PORT
 - updates all gems except those concerning elasticsearch
 - fix revoking a client key was not working
+- admin can destroy an APIClient and its projects
 
 TODO:
 - set ELASTICSEARCH_PORT variable
