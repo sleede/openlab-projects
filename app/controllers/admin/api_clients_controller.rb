@@ -34,7 +34,11 @@ class Admin::APIClientsController < ApplicationController
 
   def destroy
     @api_client = APIClient.find(params[:id])
-    authorize @api_client
+    Project.find_in_batches(query: { bool: { must: [{ match: { app_id: @api_client.app_id }}]}}) do |projects| 
+      projects.each do |project| 
+        project.destroy 
+      end 
+    end
     @api_client.destroy!
     flash.now[:notice] = "Le compte client API a bien été supprimé."
   end
