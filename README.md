@@ -20,7 +20,7 @@ docker run --restart=always -d --name openlab-elastic \
 ```
 #### Setup ElasticSearch DB
 ```bash
-bundle exec rake openlab:elastic:init_index
+bundle exec rake openlab:elastic:setup
 ```
 
 #### Install Redis with docker
