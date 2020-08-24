@@ -18,6 +18,10 @@ docker run --restart=always -d --name openlab-elastic \
   --network openlab --ip 172.19.0.2 \
   elasticsearch:1.7
 ```
+#### Setup ElasticSearch DB
+```bash
+bundle exec rake openlab:elastic:init_index
+```
 
 #### Install Redis with docker
 ```bash
