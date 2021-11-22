@@ -24,4 +24,6 @@ config/database.yml
 .DS_Store
 .idea
 
-.docker
+.docker/elasticsearch/elasticsearch
+.docker/postgresql
+.docker/redis
