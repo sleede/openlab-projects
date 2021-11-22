@@ -1,7 +1,18 @@
 
 # Changelog OpenLab-Projects
 
-## 2020 August 18
+- updated ruby version to 2.6.8
+- updated loofah to 2.6.0
+- updated rake to 13.0.1 to fix [CVE-2020-8130](https://nvd.nist.gov/vuln/detail/CVE-2020-8130)
+- updated kaminari to 1.2.1 to fix [CVE-2020-11082](https://nvd.nist.gov/vuln/detail/CVE-2020-11082)
+- updated websocket-extensions to 0.1.5 to fix [CVE-2020-7663](https://nvd.nist.gov/vuln/detail/CVE-2020-7663)
+- updated rack to 2.2.3 to fix [CVE-2020-8161](https://nvd.nist.gov/vuln/detail/CVE-2020-8161), [CVE-2020-8184](https://nvd.nist.gov/vuln/detail/CVE-2020-8184), [CVE-2019-16782](https://nvd.nist.gov/vuln/detail/CVE-2019-16782), [CVE-2018-16470](https://nvd.nist.gov/vuln/detail/CVE-2018-16470) and [CVE-2018-16471](https://nvd.nist.gov/vuln/detail/CVE-2018-16471)
+- updated addressable to 2.8.0 to fix [CVE-2021-32740](https://nvd.nist.gov/vuln/detail/CVE-2021-32740)
+- updated nokogiri to 1.12.5 to fix [CVE-2021-41098](https://nvd.nist.gov/vuln/detail/CVE-2021-41098), [GHSA-7rrm-v45f-jp64](https://github.com/advisories/GHSA-7rrm-v45f-jp64), [CVE-2020-26247](https://nvd.nist.gov/vuln/detail/CVE-2020-26247), [CVE-2020-7595](https://nvd.nist.gov/vuln/detail/CVE-2020-7595), [CVE-2019-5477](https://nvd.nist.gov/vuln/detail/CVE-2019-5477) and [CVE-2018-14404](https://nvd.nist.gov/vuln/detail/CVE-2018-14404)
+- updated sidekiq to 5.2.0 to fix [CVE-2021-30151](https://nvd.nist.gov/vuln/detail/CVE-2021-30151)
+- updated puma to 4.3.9 to fix [CVE-2021-41136](https://nvd.nist.gov/vuln/detail/CVE-2021-41136), [CVE-2021-29509](https://nvd.nist.gov/vuln/detail/CVE-2021-29509), [CVE-2020-11077](https://nvd.nist.gov/vuln/detail/CVE-2020-11077), [CVE-2020-11076](https://nvd.nist.gov/vuln/detail/CVE-2020-11076), [CVE-2020-5249](https://nvd.nist.gov/vuln/detail/CVE-2020-5249), [CVE-2020-5247](https://nvd.nist.gov/vuln/detail/CVE-2020-5247) and [CVE-2019-16770](https://nvd.nist.gov/vuln/detail/CVE-2019-16770)
+
+## v1.0.3 2020 August 18
 
 - extracts into env variable ELASTICSEARCH_PORT
 - updates all gems except those concerning elasticsearch
