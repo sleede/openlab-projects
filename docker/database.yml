@@ -2,9 +2,9 @@ default: &default
   adapter: postgresql
   encoding: unicode
   pool: 25
-  username: postgres
-  host: <%= Rails.application.secrets.postgres_host %>
-  password: <%= Rails.application.secrets.postgres_password %>
+  username: <%= ENV["POSTGRES_USERNAME"] %>
+  password: <%= ENV["POSTGRES_PASSWORD"] %>
+  host: <%= ENV["POSTGRES_HOST"] %>
 
 development:
   <<: *default

@@ -1,39 +1,18 @@
-development:
+default: &default
   adapter: postgresql
-  host: localhost
   encoding: unicode
-  database: openlab_development
   pool: 25
-  username: sleede
-  password: sleede
+  host: openlab-postgres
+  username: postgres
+  password: postgres
+
+development:
+  <<: *default
+  database: openlab_development
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
-  adapter: postgresql
-  host: localhost
-  encoding: unicode
+  <<: *default
   database: openlab_test
-  pool: 25
-  username: sleede
-  password: sleede
-
-staging:
-  adapter: postgresql
-  host: localhost
-  encoding: unicode
-  database: openlab_development
-  pool: 25
-  username: sleede
-  password: sleede
-
-
-production:
-  adapter: postgresql
-  host: localhost
-  encoding: unicode
-  database: openlab_development
-  pool: 25
-  username: sleede
-  password: sleede
