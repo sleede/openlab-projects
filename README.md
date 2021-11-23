@@ -40,7 +40,6 @@ Please refer to the [official docker documentation](https://docs.docker.com/engi
    cd .docker
    cat hosts | sudo tee -a /etc/hosts
    docker network create openlab
-   docker-compose up -d
    cd -
    ```
 
