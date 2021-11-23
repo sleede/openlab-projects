@@ -74,6 +74,7 @@ Please refer to the [official docker documentation](https://docs.docker.com/engi
 
    ```bash
    ADMIN_EMAIL='youradminemail' ADMIN_PASSWORD='youradminpassword' rails db:setup
+   rails openlab:elastic:init_index
    ```
 
 11. Create the pids folder used by Sidekiq. If you want to use a different location, you can configure it in [config/sidekiq.yml](config/sidekiq.yml)
