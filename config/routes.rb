@@ -1,3 +1,5 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: 'registrations' }
 
@@ -24,4 +26,5 @@ Rails.application.routes.draw do
   end
 
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
+  mount Sidekiq::Web => "admin/sidekiq" if Rails.env.development?
 end

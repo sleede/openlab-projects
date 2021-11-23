@@ -74,8 +74,6 @@ Please refer to the [official docker documentation](https://docs.docker.com/engi
 
    ```bash
    ADMIN_EMAIL='youradminemail' ADMIN_PASSWORD='youradminpassword' rails db:setup
-   RAILS_ENV=test rails db:create
-   RAILS_ENV=test rails db:migrate
    ```
 
 11. Create the pids folder used by Sidekiq. If you want to use a different location, you can configure it in [config/sidekiq.yml](config/sidekiq.yml)
@@ -87,10 +85,10 @@ Please refer to the [official docker documentation](https://docs.docker.com/engi
 12. Start the development web server
 
    ```bash
-   foreman s -p 3000
+   foreman s
    ```
 
-13. You should now be able to access your local development Fab-manager instance by accessing `http://localhost:3000` in your web browser.
+13. You should now be able to access your local development Fab-manager instance by accessing `http://localhost:3300` in your web browser.
 
 14. You can log in as the default administrator using the credentials defined previously.
 

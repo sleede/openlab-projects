@@ -4,7 +4,7 @@ default: &default
   pool: 25
   host: openlab-postgres
   username: postgres
-  password: postgres
+  password:
 
 development:
   <<: *default
