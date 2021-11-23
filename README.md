@@ -116,7 +116,7 @@ docker-compose run --rm openlab-projects bundle exec rake assets:precompile
 
 If the database has changed (migration) or any other change occurred, run the specific commands like the "asset precompile" one (eg. bundle exec rake db:migrate).
 
-Finally restart the container
+Finally, restart the container
 ```bash
 docker-compose down
 docker-compose up -d

@@ -13,8 +13,6 @@ services:
     volumes:
       - ${PWD}/public/assets:/usr/src/app/public/assets
       - ${PWD}/log:/var/log/supervisor
-      - ${PWD}/config/nginx:/etc/nginx/conf.d
-      - ${PWD}/letsencrypt/etc:/etc/letsencrypt
     depends_on:
       - postgres
       - redis
@@ -37,4 +35,19 @@ services:
     image: redis:6-alpine
     volumes:
       - ${PWD}/redis:/data
+    restart: always
+
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ${PWD}/config/nginx:/etc/nginx/conf.d
+      - ${PWD}/letsencrypt/etc:/etc/letsencrypt
+      - ${PWD}/log:/var/log/nginx
+    volumes_from:
+      - openlab-projects:ro
+    links:
+      - openlab-projects:openlab-projects
     restart: always

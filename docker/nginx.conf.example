@@ -1,5 +1,5 @@
 upstream puma {
-  server unix:/usr/src/app/tmp/sockets/openlab.sock fail_timeout=0;
+  server openlab-projects:3300;
 }
 
 server {
