@@ -103,15 +103,26 @@ This interface is available only in development.
 We use docker-compose to run the app in production.
 See [docker/README.md](docker/README.md) for more details.
 ```bash
-mkdir -p /apps/openlab-projects/config
+mkdir -p /apps/openlab-projects/config/nginx/ssl
 cd /apps/openlab-projects
 mkdir -p elasticsearch/config
 curl -sSL https://raw.githubusercontent.com/sleede/openlab-projects/dev/docker/docker-compose.yml > docker-compose.yml
 curl -sSL https://raw.githubusercontent.com/sleede/openlab-projects/dev/docker/env.example > config/env
 curl -sSL https://raw.githubusercontent.com/sleede/openlab-projects/dev/docker/elasticsearch/config/elasticsearch.yml > elasticsearch/config/elasticsearch.yml
 curl -sSL https://raw.githubusercontent.com/sleede/openlab-projects/dev/docker/elasticsearch/config/log4j2.properties > elasticsearch/config/log4j2.properties
+curl -sSL https://raw.githubusercontent.com/sleede/openlab-projects/dev/docker/nginx.conf > config/nginx/nginx.conf
 docker-compose pull
 ```
+
+- Build the certificate with let's encrypt or copy an existing one on the server folder.
+- Change the docker-compose.yml file accordingly to bind the certificate directory to the nginx service.
+- Change the nginx configuration to use the certificate.
+
+```bash
+curl -sSL https://raw.githubusercontent.com/sleede/openlab-projects/dev/docker/nginx.ssl.conf > config/nginx/nginx.conf
+```
+
+- Restart nginx
 
 If any asset has changed, recompile them
 ```bash 
