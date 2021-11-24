@@ -2,9 +2,6 @@ version: '2'
 services:
   openlab-projects:
     image: sleede/openlab-projects
-    ports:
-      - "80:80"
-      - "443:443"
     environment:
       RAILS_ENV: production
       RACK_ENV: production
