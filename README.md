@@ -103,8 +103,13 @@ This interface is available only in development.
 We use docker-compose to run the app in production.
 See [docker/README.md](docker/README.md) for more details.
 ```bash
-curl -sSL https://raw.githubusercontent.com/sleede/openlab-projects/dockercompose/docker/docker-compose.yml > docker-compose.yml
-curl -sSL https://raw.githubusercontent.com/sleede/openlab-projects/dockercompose/docker/env.example > config/env
+mkdir -p /apps/openlab-projects/config
+cd /apps/openlab-projects
+mkdir -p elasticsearch/config
+curl -sSL https://raw.githubusercontent.com/sleede/openlab-projects/dev/docker/docker-compose.yml > docker-compose.yml
+curl -sSL https://raw.githubusercontent.com/sleede/openlab-projects/dev/docker/env.example > config/env
+curl -sSL https://raw.githubusercontent.com/sleede/openlab-projects/dev/docker/elasticsearch/config/elasticsearch.yml > elasticsearch/config/elasticsearch.yml
+curl -sSL https://raw.githubusercontent.com/sleede/openlab-projects/dev/docker/elasticsearch/config/log4j2.properties > elasticsearch/config/log4j2.properties
 docker-compose pull
 ```
 
