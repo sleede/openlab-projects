@@ -6,12 +6,16 @@ jq() {
   docker run --rm -i -v "${PWD}:/data" imega/jq "$@"
 }
 
+yq() {
+  docker run --rm -i -v "${PWD}:/workdir" --user "$UID" mikefarah/yq:4 "$@"
+}
+
 config()
 {
   if [ "$(whoami)" = "root" ]
   then
     echo "It is not recommended to run this script as root. As a normal user, elevation will be prompted if needed."
-    read -rp "Continue anyway? (y/n) " confirm </dev/tty
+    read -rp "Continue anyway? (Y/n) " confirm </dev/tty
     if [[ "$confirm" = "n" ]]; then exit 1; fi
   else
     if ! command -v sudo
@@ -68,7 +72,7 @@ config()
   fi
   OLP_PATH=$(pwd)
   TYPE="NOT-FOUND"
-  read -rp "Is OpenLab-projects installed at \"$OLP_PATH\"? (y/n) " confirm </dev/tty
+  read -rp "Is OpenLab-projects installed at \"$OLP_PATH\"? (y/N) " confirm </dev/tty
   if [ "$confirm" = "y" ]
   then
     # checking disk space (minimum required = 1168323KB)
@@ -79,31 +83,9 @@ config()
       df -h $OLP_PATH
       exit 7
     fi
-    if [ -f "$OLP_PATH/config/env" ]
-    then
-      ES_HOST=$(cat "$OLP_PATH/config/env" | grep ELASTICSEARCH_HOST | awk '{split($0,a,"="); print a[2]}')
-    else
-      echo "OpenLab-projects' environment file not found, please run this script from the installation folder"
-      exit 1
-    fi
-    ES_IP=$(getent ahostsv4 "$ES_HOST" | awk '{ print $1 }' | uniq)
   else
     echo "Please run this script from the OpenLab-projects' installation folder"
     exit 1
-  fi
-}
-
-test_docker_compose()
-{
-  if [[ -f "$OLP_PATH/docker-compose.yml" ]]
-  then
-    docker-compose ps | grep elastic
-    if [[ $? = 0 ]]
-    then
-      TYPE="DOCKER-COMPOSE"
-      local container_id=$(docker-compose ps | grep elastic | awk '{print $1}')
-      ES_IP=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' "$container_id")
-    fi
   fi
 }
 
@@ -141,12 +123,21 @@ test_version()
 
 detect_installation()
 {
-  echo "Detecting installation type..."
+  echo "Detecting installation..."
 
-  test_docker_compose
+  if [[ -f "$OLP_PATH/docker-compose.yml" ]]
+    then
+      docker-compose ps | grep elastic
+      if [[ $? = 0 ]]
+      then
+        TYPE="DOCKER-COMPOSE"
+        local container_id=$(docker-compose ps | grep elastic | awk '{print $1}')
+        ES_IP=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' "$container_id")
+      fi
+    fi
   if [[ "$TYPE" = "DOCKER-COMPOSE" ]]
   then
-    echo "Docker-compose installation detected."
+    echo "Valid installation detected."
   fi
 
   if [[ "$TYPE" = "NOT-FOUND" ]]
@@ -256,34 +247,38 @@ upgrade_compose()
 {
   local current=$1
   local target=$2
-  echo -e "\nUpgrading docker-compose installation from $current to $target..."
+  echo -e "\nUpgrading installation from $current to $target..."
   prepare_upgrade
   docker-compose stop elasticsearch
   docker-compose rm -f elasticsearch
   local image="elasticsearch:$target"
   if [ $target = '6.2' ]; then image="docker.elastic.co\/elasticsearch\/elasticsearch-oss:6.2.3"; fi
-  sed -i.bak "s/image: elasticsearch:$current/image: $image/g" "$OLP_PATH/docker-compose.yml"
+  yq -i eval ".services.elasticsearch.image = \"$image\"" docker-compose.yml
   if ! grep -qe "ES_JAVA_OPTS" docker-compose.yml
   then
-    sed -i.bak "/image: $image/s/.*/&\n    environment:\n      - \"ES_JAVA_OPTS=-Xms512m -Xmx512m\"/" "$OLP_PATH/docker-compose.yml"
+    yq eval -i '.services.elasticsearch.environment += ["ES_JAVA_OPTS=-Xms512m -Xmx512m"]' docker-compose.yml
   fi
   if ! grep -qe "ulimits" docker-compose.yml
   then
-    sed -i.bak "/image: $image/s/.*/&\n    ulimits:\n      memlock:\n        soft: -1\n        hard: -1/" "$OLP_PATH/docker-compose.yml"
+    yq eval -i '.services.elasticsearch.ulimits.memlock.soft = -1' docker-compose.yml
+    yq eval -i '.services.elasticsearch.ulimits.memlock.hard = -1' docker-compose.yml
   fi
   if [ $target = '2.4' ]
   then
     # get current data directory
-    dir=$(awk 'BEGIN { FS="\n"; RS="";} { match($0, /image: elasticsearch:2\.4(\n|.)+volumes:(\n|.)+(-.*elasticsearch\/data)/, lines); FS="[ :]+"; RS="\r\n"; split(lines[3], line); print line[2] }' "$OLP_PATH/docker-compose.yml")
+    dir=$(yq eval '.services.elasticsearch.volumes[] | select(. == "*data")' docker-compose.yml | cut -d: -f1)
     # set the configuration directory
     dir=$(echo "${dir//[$'\t\r\n ']}/config")
     # insert configuration directory into docker-compose bindings
-    awk "BEGIN { FS=\"\n\"; RS=\"\";} { print gensub(/(image: elasticsearch:2\.4(\n|.)+volumes:(\n|.)+(-.*elasticsearch\/data))/, \"\\\\1\n      - ${dir}:/usr/share/elasticsearch/config\", \"g\") }" "$OLP_PATH/docker-compose.yml" > "$OLP_PATH/.awktmpfile" && mv "$OLP_PATH/.awktmpfile" "$OLP_PATH/docker-compose.yml"
+    yq eval -i '.services.elasticsearch.volumes += ["'$dir':/usr/share/elasticsearch/config"]' docker-compose.yml
     abs_dir=$(echo "$dir" | sed "s^\${PWD}^$OLP_PATH^")
     echo -e "\nCopying ElasticSearch 2.4 configuration files from GitHub to $abs_dir..."
-    mkdir -p "$abs_dir"
-    curl -sSL https://raw.githubusercontent.com/sleede/fab-manager/master/setup/elasticsearch.yml > "$abs_dir/elasticsearch.yml"
-    curl -sSL https://raw.githubusercontent.com/sleede/fab-manager/master/setup/log4j2.properties > "$abs_dir/log4j2.properties"
+    if ! mkdir -p "$abs_dir"; then
+      echo -e "\nFailed to create $abs_dir. Exiting..."
+      exit 8
+    fi
+    curl -sSL https://raw.githubusercontent.com/sleede/openlab-projects/dev/docker/elasticsearch/config/elasticsearch.yml > "$abs_dir/elasticsearch.yml"
+    curl -sSL https://raw.githubusercontent.com/sleede/openlab-projects/dev/docker/elasticsearch/config/log4j2.properties > "$abs_dir/log4j2.properties"
   fi
   docker-compose pull elasticsearch
   docker-compose up -d
@@ -422,7 +417,7 @@ upgrade_elastic()
 {
   config
   detect_installation
-  read -rp "Continue with upgrading? (y/n) " confirm </dev/tty
+  read -rp "Continue with upgrading? (y/N) " confirm </dev/tty
   if [[ "$confirm" = "y" ]]; then
     trap "trap_ctrlc" 2 # SIGINT
     ensure_initial_status_green
