@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 
 
@@ -40,9 +42,9 @@ gem 'kaminari', '1.2.1'
 gem 'sidekiq'
 gem 'sidekiq-cron'
 
-gem 'elasticsearch-model', '0.1.8'
-gem 'elasticsearch-persistence', '0.1.8', require: 'elasticsearch/persistence/model'
-gem 'elasticsearch-rails', '0.1.8'
+gem 'elasticsearch-model', '7.2.0'
+gem 'elasticsearch-persistence', '7.2.0'
+gem 'elasticsearch-rails', '7.2.0'
 gem 'api-pagination'
 gem 'oj'
 

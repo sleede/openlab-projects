@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Project
   include Elasticsearch::Persistence::Model
   include Concerns::Elasticable

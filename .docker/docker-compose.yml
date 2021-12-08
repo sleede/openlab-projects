@@ -16,15 +16,15 @@ services:
       POSTGRES_HOST_AUTH_METHOD: trust
 
   elasticsearch:
-    image: elasticsearch:1.7
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.15.2
     environment:
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - discovery.type=single-node
     ulimits:
       memlock:
         soft: -1
         hard: -1
     volumes:
-      - ${PWD}/elasticsearch/config:/usr/share/elasticsearch/config
       - ${PWD}/elasticsearch:/usr/share/elasticsearch/data
     restart: always
     ## linux

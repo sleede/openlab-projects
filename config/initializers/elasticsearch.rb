@@ -1,4 +1,4 @@
-Elasticsearch::Persistence.client = Elasticsearch::Client.new host: "http://#{Rails.application.secrets.elasticsearch_host}:#{Rails.application.secrets.elasticsearch_port}", log: true
+# frozen_string_literal: true
 
-require 'kaminari/models/array_extension'
+Kaminari::Hooks.init if defined?(Kaminari::Hooks)
 Elasticsearch::Model::Response::Response.__send__ :include, Elasticsearch::Model::Response::Pagination::Kaminari
