@@ -5,8 +5,8 @@ class API::V1::ProjectsController < API::V1::BaseController
     #raise ActionController::ParameterMissing, "params q is needed" if params[:q].blank?
 
     api_clients = APIClient.pluck(:app_id, :name, :origin)
-    @api_client_names = Hash[api_clients.map{ |api_client| [api_client[0], api_client[1]] }]
-    @api_client_origins = Hash[api_clients.map{ |api_client| [api_client[0], api_client[2]] }]
+    @api_client_names = Hash[api_clients.map { |api_client| [api_client[0], api_client[1]] }]
+    @api_client_origins = Hash[api_clients.map { |api_client| [api_client[0], api_client[2]] }]
 
     page, per_page, from = PaginationParams.clean(params[:page], params[:per_page])
 
