@@ -1,4 +1,4 @@
-FROM ruby:2.6.8-bullseye
+FROM ruby:2.7.4-bullseye
 MAINTAINER team sleede <contact@sleede.com>
 
 # Install apt based dependencies required to run Rails as
