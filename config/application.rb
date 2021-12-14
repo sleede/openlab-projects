@@ -1,4 +1,6 @@
-require File.expand_path('../boot', __FILE__)
+# frozen_string_literal: true
+
+require_relative 'boot'
 
 require 'rails/all'
 
@@ -11,5 +13,8 @@ module Openfablab
   class Application < Rails::Application
     config.i18n.default_locale = :fr
     config.time_zone = 'Paris'
+
+    # Initialize configuration defaults for originally generated Rails version.
+    config.load_defaults 5.0
   end
 end

@@ -3,15 +3,17 @@
 source 'https://rubygems.org'
 
 
-gem 'rails', '5.0.7'
-gem 'pg'
-gem 'postgres_ext'
-
+gem 'bootsnap'
 gem 'puma'
+gem 'rails', '5.2.6'
+
+gem 'active_record_extended'
+gem 'pg'
+
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'sassc-rails'
 gem 'uglifier', '>= 1.3.0'
-gem 'coffee-rails', '~> 4.1.0'
+gem 'coffee-rails', '~> 5.0.0'
 gem 'jquery-rails'
 gem 'turbolinks', '~> 5.x'
 gem 'jbuilder', '~> 2.0'
@@ -34,7 +36,7 @@ group :development do
   gem 'awesome_print'
   gem 'letter_opener'
   gem 'foreman'
-  gem 'letter_opener_web', '~> 1.0'
+  gem 'letter_opener_web', '~> 2.0'
 end
 
 gem 'pundit'
