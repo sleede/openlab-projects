@@ -1,5 +1,6 @@
 class APIClient < ApplicationRecord
   has_many :calls_count_tracings, dependent: :destroy
+  has_many :projects, inverse_of: :api_client
 
   has_secure_token :app_id
   has_secure_token :app_secret

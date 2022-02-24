@@ -2,17 +2,17 @@ class CreateProjects < ActiveRecord::Migration[5.0]
   def change
     create_table :projects do |t|
       t.string :slug
-      t.references :users, foreign_key: true
-      t.integer :remote_id
+      t.references :api_client, foreign_key: true, index: true
+      t.integer :project_id
       t.string :name
       t.text :description
-      t.string :tags, array: true
+      t.text :tags
       t.string :machines, array: true
       t.string :components, array: true
       t.string :themes, array: true
       t.string :author
       t.string :collaborators, array: true
-      t.string :steps_body
+      t.text :steps_body
       t.string :image_path
       t.string :project_path
       t.datetime :published_at

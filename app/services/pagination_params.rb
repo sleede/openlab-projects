@@ -12,8 +12,6 @@ module PaginationParams
       default_per_page
     end
 
-    from = (page - 1) * per_page
-
-    return page, per_page, from
+    return page, per_page
   end
 end

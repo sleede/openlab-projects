@@ -15,7 +15,7 @@
       <strong>APP ID: </strong><%= api_client.app_id %><br>
       <strong>APP Secret: </strong><%= api_client.app_secret %><br>
       <strong>origin: </strong><%= api_client.origin %><br>
-      <strong>Nb de projets: <%= Project.count(query: { bool: { must: [{ match: { app_id: api_client.app_id }}]}}) %></strong><br>
+      <strong>Nb de projets: <%= api_client.projects.count %></strong><br>
       <br>
 
       <%= link_to "Révoquer l'accès", admin_api_client_app_secret_path(api_client), remote: true, method: :patch, title: "Désactive l'accès en regénérant une nouvelle clef", data: { confirm: "Êtes-vous sûr de vouloir révoquer l'accès de ce client en regénérant sa clef ? Son accès sera instantanément révoqué." } %>

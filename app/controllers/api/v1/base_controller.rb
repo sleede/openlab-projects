@@ -3,7 +3,6 @@ class API::V1::BaseController < ActionController::Base
   before_action :authenticate
   before_action :increment_calls_count
 
-  rescue_from Elasticsearch::Persistence::Repository::DocumentNotFound, with: :not_found
   rescue_from ActionController::ParameterMissing, with: :bad_request
 
   helper_method :current_api_client

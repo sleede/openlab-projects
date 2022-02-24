@@ -10,10 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_13_172127) do
+ActiveRecord::Schema.define(version: 2022_02_24_152030) do
 
   # These are extensions that must be enabled in order to support this database
+  enable_extension "fuzzystrmatch"
+  enable_extension "pg_trgm"
   enable_extension "plpgsql"
+  enable_extension "unaccent"
 
   create_table "api_clients", id: :serial, force: :cascade do |t|
     t.string "name", default: "", null: false
@@ -36,23 +39,25 @@ ActiveRecord::Schema.define(version: 2021_12_13_172127) do
 
   create_table "projects", id: :serial, force: :cascade do |t|
     t.string "slug"
-    t.integer "users_id"
-    t.integer "remote_id"
+    t.integer "api_client_id"
+    t.integer "project_id"
     t.string "name"
     t.text "description"
-    t.string "tags", array: true
+    t.text "tags"
     t.string "machines", array: true
     t.string "components", array: true
     t.string "themes", array: true
     t.string "author"
     t.string "collaborators", array: true
-    t.string "steps_body"
+    t.text "steps_body"
     t.string "image_path"
     t.string "project_path"
     t.datetime "published_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["users_id"], name: "index_projects_on_users_id"
+    t.tsvector "search_vector"
+    t.index ["api_client_id"], name: "index_projects_on_api_client_id"
+    t.index ["search_vector"], name: "index_projects_on_search_vector", using: :gin
   end
 
   create_table "users", id: :serial, force: :cascade do |t|
@@ -73,5 +78,5 @@ ActiveRecord::Schema.define(version: 2021_12_13_172127) do
   end
 
   add_foreign_key "calls_count_tracings", "api_clients"
-  add_foreign_key "projects", "users", column: "users_id"
+  add_foreign_key "projects", "api_clients"
 end

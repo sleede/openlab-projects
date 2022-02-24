@@ -5,13 +5,9 @@ services:
     volumes:
      - ${PWD}/postgresql:/var/lib/postgresql/data
     restart: always
-    ## linux
-    networks:
-      openlab:
-         ipv4_address: 172.19.0.4
-    ## osx
-    #ports:
-    #  - "5433:5432"
+    # osx
+    ports:
+     - "5443:5432"
     environment:
       POSTGRES_HOST_AUTH_METHOD: trust
 
@@ -29,47 +25,28 @@ services:
     volumes:
       - ${PWD}/elasticsearch:/usr/share/elasticsearch/data
     restart: always
-    ## linux
-    networks:
-      openlab:
-        ipv4_address: 172.19.0.2
-    ## osx
-    #ports:
-    #  - "9201:9200"
-    #  - "9301:9300"
+    # osx
+    ports:
+     - "9202:9200"
+     - "9302:9300"
 
   kibana:
     image: kibana:5.6
     environment:
       ELASTICSEARCH_HOSTS: http://openlab-elastic:9200
     restart: always
-    ## linux
-    networks:
-      openlab:
-        ipv4_address: 172.19.0.5
-    ## osx
-    #ports:
-    #  - "5602:5601"
+    # osx
+    ports:
+     - "5602:5601"
 
   redis:
     image: redis:6-alpine
     volumes:
       - ${PWD}/redis:/data
     restart: always
-    ## linux
-    networks:
-      openlab:
-        ipv4_address: 172.19.0.3
-    ## osx
-    #ports:
-    #  - "6380:6379"
+    # osx
+    ports:
+     - "6380:6379"
 
-## linux
-networks:
-  openlab:
-    driver: bridge
-    ipam:
-      config:
-        - subnet: 172.19.0.0/16
-          gateway: 172.19.0.1
+
 

@@ -7,7 +7,6 @@ gem 'bootsnap'
 gem 'puma'
 gem 'rails', '5.2.6'
 
-gem 'active_record_extended'
 gem 'pg'
 
 gem 'bootstrap-sass', '~> 3.3.6'
@@ -28,27 +27,25 @@ end
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
-  gem 'web-console', '~> 3.0'
+  gem 'web-console'
   gem 'listen', '~> 3.0.5'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'awesome_print'
-  gem 'letter_opener'
   gem 'foreman'
   gem 'letter_opener_web', '~> 2.0'
 end
 
 gem 'pundit'
 gem 'devise'
-gem 'kaminari', '1.2.1'
+gem 'kaminari'
 gem 'sidekiq'
 gem 'sidekiq-cron'
 
-gem 'elasticsearch-model', '7.2.0'
-gem 'elasticsearch-persistence', '7.2.0'
-gem 'elasticsearch-rails', '7.2.0'
 gem 'api-pagination'
 gem 'oj'
+
+gem 'pg_search'
 
 gem 'rails_12factor', group: :production
