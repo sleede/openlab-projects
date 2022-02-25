@@ -3,12 +3,10 @@
 class Project < ActiveRecord::Base
   include PgSearch::Model
 
-  belongs_to :api_client, class_name: "APIClient", inverse_of: :projects
-
-  self.record_timestamps = false
+  belongs_to :api_client, inverse_of: :projects
 
   # validations
-  validates :slug, :name, :project_id, :project_path, presence: true
+  validates :name, :project_id, :project_path, presence: true
 
   pg_search_scope :search,
     against: :search_vector,

@@ -1,4 +1,4 @@
-class CreateAPIClients < ActiveRecord::Migration[5.0]
+class CreateApiClients < ActiveRecord::Migration[5.0]
   def change
     create_table :api_clients do |t|
       t.string :name, null: false, default: ""

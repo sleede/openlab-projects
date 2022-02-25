@@ -1,20 +1,20 @@
-class Admin::APIClientsController < ApplicationController
+class Admin::ApiClientsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @api_clients = APIClient.order(:created_at)
+    @api_clients = ApiClient.order(:created_at)
   end
 
   def new
-    @api_client = APIClient.new
+    @api_client = ApiClient.new
   end
 
   def edit
-    @api_client = APIClient.find(params[:id])
+    @api_client = ApiClient.find(params[:id])
   end
 
   def update
-    @api_client = APIClient.find(params[:id])
+    @api_client = ApiClient.find(params[:id])
     if @api_client.update(api_client_params)
       flash.now[:success] = "Le compte client API a bien été modifié."
     else
@@ -24,7 +24,7 @@ class Admin::APIClientsController < ApplicationController
   end
 
   def create
-    @api_client = APIClient.new(api_client_params)
+    @api_client = ApiClient.new(api_client_params)
     if @api_client.save
       flash.now[:success] = "Le compte client API a bien été créé."
     else
@@ -33,12 +33,7 @@ class Admin::APIClientsController < ApplicationController
   end
 
   def destroy
-    @api_client = APIClient.find(params[:id])
-    Project.find_in_batches(query: { bool: { must: [{ match: { app_id: @api_client.app_id }}]}}) do |projects| 
-      projects.each do |project| 
-        project.destroy 
-      end 
-    end
+    @api_client = ApiClient.find(params[:id])
     @api_client.destroy!
     flash.now[:notice] = "Le compte client API a bien été supprimé."
   end

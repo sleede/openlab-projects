@@ -13,27 +13,15 @@ services:
     depends_on:
       - postgres
       - redis
-      - elasticsearch
     restart: always
 
   postgres:
-    image: postgres:9.4
+    image: postgres:13
     volumes:
       - ${PWD}/postgresql:/var/lib/postgresql/data
     restart: always
-
-  elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.15
     environment:
-      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
-      - discovery.type=single-node
-    ulimits:
-      memlock:
-        soft: -1
-        hard: -1
-    volumes:
-      - ${PWD}/elasticsearch:/usr/share/elasticsearch/data
-    restart: always
+      POSTGRES_HOST_AUTH_METHOD: trust
 
   redis:
     image: redis:6-alpine

@@ -1,4 +1,4 @@
-class API::V1::ProjectsController < API::V1::BaseController
+class Api::V1::ProjectsController < Api::V1::BaseController
   include Concerns::PaginationHeaders
 
   def index
@@ -7,7 +7,7 @@ class API::V1::ProjectsController < API::V1::BaseController
     @projects = if params[:q].present?
       Project.search(params[:q])
     else
-      Project.order(published_at: :desc)
+      Project.order(created_at: :desc)
     end
 
     @projects = @projects.includes(:api_client).page(page).per(per_page)
@@ -52,7 +52,7 @@ class API::V1::ProjectsController < API::V1::BaseController
 
     def project_params
       params.require(:project).permit(:slug, :name, :description, :tags, :machines, :components, :themes,
-        :author, :collaborators, :steps_body, :project_path, :image_path, :updated_at, :created_at, :published_at
+        :author, :collaborators, :steps_body, :project_path, :image_path, :published_at
       )
     end
 end

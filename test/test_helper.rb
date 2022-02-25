@@ -8,7 +8,7 @@ Minitest::Reporters.use! [Minitest::Reporters::DefaultReporter.new({ color: true
 class ActiveSupport::TestCase
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
   fixtures :all
-
+  
   # Add more helper methods to be used by all tests here...
 
   def json_response(body)
@@ -20,29 +20,4 @@ class ActiveSupport::TestCase
     headers['Authorization'] = "Token token=#{api_client.app_secret}" if api_client
     headers
   end
-
-end
-
-class ActionDispatch::IntegrationTest
-
-  def setup
-    Rake::Task["openlab:elastic:delete_index"].invoke
-    Rake::Task["openlab:elastic:init_index"].invoke
-    Rake::Task["openlab:elastic:put_mappings"].invoke
-    Rake::Task["openlab:elastic:seed"].invoke
-    refresh_elastic_index
-  end
-
-  def teardown
-    #Rake::Task["openfablab:elastic:delete_index"].invoke
-  end
-
-  protected
-    def refresh_elastic_index
-      elastic_client.indices.refresh index: Project.index_name
-    end
-
-    def elastic_client
-      @elastic_client ||= Elasticsearch::Client.new host: "http://#{Rails.application.secrets.elasticsearch_host}:#{Rails.application.secrets.elasticsearch_port}", log: false
-    end
 end

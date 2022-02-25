@@ -5,7 +5,7 @@ source 'https://rubygems.org'
 
 gem 'bootsnap'
 gem 'puma'
-gem 'rails', '5.2.6'
+gem 'rails', '~> 6.1'
 
 gem 'pg'
 
@@ -16,6 +16,9 @@ gem 'coffee-rails', '~> 5.0.0'
 gem 'jquery-rails'
 gem 'turbolinks', '~> 5.x'
 gem 'jbuilder', '~> 2.0'
+
+gem 'sprockets', '~> 4.0'
+gem 'sprockets-rails', '~> 3.4'
 
 group :development, :test do
   gem 'byebug'
@@ -37,6 +40,7 @@ group :development do
   gem 'letter_opener_web', '~> 2.0'
 end
 
+
 gem 'pundit'
 gem 'devise'
 gem 'kaminari'
@@ -47,5 +51,3 @@ gem 'api-pagination'
 gem 'oj'
 
 gem 'pg_search'
-
-gem 'rails_12factor', group: :production

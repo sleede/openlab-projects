@@ -13,6 +13,3 @@
 - In `config/nginx/openlab.conf` change `upstream puma { server unix:/...; }` to `upstream puma { server openlab:3300; }`
 - `docker-compose down && docker-compose up -d`
 
-## Elasticsearch
-
-- Run `scripts/elastic-upgrade.sh`

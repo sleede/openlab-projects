@@ -24,11 +24,6 @@ docker-compose run --rm openlab-projects bundle exec rake assets:precompile
 
 ```
 
-# PREPARE ELASTIC
-```bash
-docker-compose run --rm openlab-projects bundle exec rake openlab:elastic:setup
-```
-
 ### RUN APP
 
 ```bash

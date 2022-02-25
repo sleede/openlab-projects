@@ -14,6 +14,10 @@ module Openfablab
     config.i18n.default_locale = :fr
     config.time_zone = 'Paris'
 
+    config.autoloader = :classic
+
+    config.active_record.schema_format = :sql
+
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.0
   end

@@ -74,7 +74,6 @@ Please refer to the [official docker documentation](https://docs.docker.com/engi
 
    ```bash
    ADMIN_EMAIL='youradminemail' ADMIN_PASSWORD='youradminpassword' rails db:setup
-   rails openlab:elastic:init_index
    ```
 
 11. Create the pids folder used by Sidekiq. If you want to use a different location, you can configure it in [config/sidekiq.yml](config/sidekiq.yml)
@@ -105,11 +104,8 @@ See [docker/README.md](docker/README.md) for more details.
 ```bash
 mkdir -p /apps/openlab-projects/config/nginx/ssl
 cd /apps/openlab-projects
-mkdir -p elasticsearch/config
 curl -sSL https://raw.githubusercontent.com/sleede/openlab-projects/dev/docker/docker-compose.yml > docker-compose.yml
 curl -sSL https://raw.githubusercontent.com/sleede/openlab-projects/dev/docker/env.example > config/env
-curl -sSL https://raw.githubusercontent.com/sleede/openlab-projects/dev/docker/elasticsearch/config/elasticsearch.yml > elasticsearch/config/elasticsearch.yml
-curl -sSL https://raw.githubusercontent.com/sleede/openlab-projects/dev/docker/elasticsearch/config/log4j2.properties > elasticsearch/config/log4j2.properties
 curl -sSL https://raw.githubusercontent.com/sleede/openlab-projects/dev/docker/nginx.conf > config/nginx/nginx.conf
 docker-compose pull
 ```
@@ -142,13 +138,5 @@ docker-compose up -d
 
 to run the test suite:
 ```bash
-bundle exec rake test
+bundle exec rails test
 ```
-
-
-### command to test analyzers
-
-```bash
- curl -XGET 'localhost:9200/openfablab_development/_analyze?analyzer=xxxxxx' -d "autre sport" | python -m json.tool
-```
-

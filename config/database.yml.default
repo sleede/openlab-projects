@@ -1,18 +1,22 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  pool: 25
-  host: openlab-postgres
-  username: postgres
-  password:
+  # For details on connection pooling, see Rails configuration guide
+  # http://guides.rubyonrails.org/configuring.html#database-pooling
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  host: <%= Rails.application.secrets.postgres_host %>
+  port: <%= Rails.application.secrets.postgres_port %>
+  username: <%= Rails.application.secrets.postgres_username %>
+  password: <%= Rails.application.secrets.postgres_password %>
 
 development:
   <<: *default
   database: openlab_development
 
-# Warning: The database defined as "test" will be erased and
-# re-generated from your development database when you run "rake".
-# Do not set this db to the same as development or production.
 test:
   <<: *default
   database: openlab_test
+
+production:
+  <<: *default
+  database: openlab_production

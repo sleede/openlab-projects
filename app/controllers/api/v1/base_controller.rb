@@ -1,9 +1,10 @@
-class API::V1::BaseController < ActionController::Base
+class Api::V1::BaseController < ActionController::Base
   protect_from_forgery with: :null_session
   before_action :authenticate
   before_action :increment_calls_count
 
   rescue_from ActionController::ParameterMissing, with: :bad_request
+  rescue_from ActiveRecord::RecordNotFound, with: :not_found
 
   helper_method :current_api_client
 
@@ -22,7 +23,7 @@ class API::V1::BaseController < ActionController::Base
 
     def authenticate_token
       authenticate_with_http_token do |token, options|
-        @api_client = APIClient.find_by(app_secret: token)
+        @api_client = ApiClient.find_by(app_secret: token)
       end
     end
 

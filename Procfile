@@ -1,2 +1,2 @@
-web:    bundle exec rails server puma -p 3300
+web:    bundle exec rails s -p 3300
 worker: bundle exec sidekiq -C ./config/sidekiq.yml
