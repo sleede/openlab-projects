@@ -64,16 +64,16 @@ GEM
       public_suffix (>= 2.0.2, < 5.0)
     ansi (1.5.0)
     api-pagination (5.0.0)
-    autoprefixer-rails (10.3.3.0)
+    autoprefixer-rails (10.4.2.0)
       execjs (~> 2)
     awesome_print (1.9.2)
     bcrypt (3.1.16)
     bindex (0.8.1)
     bootsnap (1.9.3)
       msgpack (~> 1.0)
-    bootstrap-sass (3.3.7)
+    bootstrap-sass (3.4.1)
       autoprefixer-rails (>= 5.2.1)
-      sass (>= 3.3.4)
+      sassc (>= 2.0.0)
     builder (3.2.4)
     byebug (11.1.3)
     coffee-rails (5.0.0)
@@ -96,7 +96,7 @@ GEM
     et-orbi (1.2.6)
       tzinfo
     execjs (2.8.1)
-    ffi (1.15.4)
+    ffi (1.15.5)
     foreman (0.87.2)
     fugit (1.5.2)
       et-orbi (~> 1.1, >= 1.1.8)
@@ -198,7 +198,7 @@ GEM
       rake (>= 0.13)
       thor (~> 1.0)
     rake (13.0.6)
-    rb-fsevent (0.11.0)
+    rb-fsevent (0.11.1)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
     redis (4.6.0)
@@ -207,11 +207,6 @@ GEM
       railties (>= 5.0)
     rexml (3.2.5)
     ruby-progressbar (1.11.0)
-    sass (3.7.4)
-      sass-listen (~> 4.0.0)
-    sass-listen (4.0.0)
-      rb-fsevent (~> 0.9, >= 0.9.4)
-      rb-inotify (~> 0.9, >= 0.9.7)
     sassc (2.4.0)
       ffi (~> 1.9)
     sassc-rails (2.1.2)
@@ -266,7 +261,7 @@ DEPENDENCIES
   api-pagination
   awesome_print
   bootsnap
-  bootstrap-sass (~> 3.3.6)
+  bootstrap-sass (~> 3.4.1)
   byebug
   coffee-rails (~> 5.0.0)
   devise
