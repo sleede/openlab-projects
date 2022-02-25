@@ -143,9 +143,17 @@ bundle exec rails test
 
 ### Migrate from elastic to pg
 
-- go on old server
+- go on old server with old app code (with elastic)
 - open rails c
 - run
 ```ruby
 File.write("#{Rails.root}/_____CHEMIN____/projects.yml", YAML.dump(Project.find_each.map(&:attributes)))
 ```
+- save the file in some place
+- upgrades openlab app
+- enter in the container
+- create folder data
+- move the projects.yml into /app/data
+- run rails openlab:projects:import_from_yml_dump task
+- open rails console and check that everything is OK
+- remove file
