@@ -26,3 +26,6 @@ config/database.yml
 
 .docker/postgresql
 .docker/redis
+
+/data/*
+!/data/.keep

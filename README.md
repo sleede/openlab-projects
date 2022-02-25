@@ -140,3 +140,12 @@ to run the test suite:
 ```bash
 bundle exec rails test
 ```
+
+### Migrate from elastic to pg
+
+- go on old server
+- open rails c
+- run
+```ruby
+File.write("#{Rails.root}/_____CHEMIN____/projects.yml", YAML.dump(Project.find_each.map(&:attributes)))
+```
