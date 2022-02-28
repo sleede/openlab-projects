@@ -53,5 +53,4 @@ EXPOSE 3300
 # The main command to run when the container starts. Also
 # tell the Rails dev server to bind to all interfaces by
 # default.
-COPY docker/supervisor.conf /etc/supervisor/conf.d/openlab.conf
 CMD ["/usr/bin/supervisord"]
