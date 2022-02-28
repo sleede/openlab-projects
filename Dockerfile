@@ -10,7 +10,7 @@ RUN apt-get update && \
       supervisor
 
 # throw errors if Gemfile has been modified since Gemfile.lock
-RUN bundle config --global frozen 1
+RUN bundle config --global frozen 1 --without dev
 
 # Run Bundle in a cache efficient way
 WORKDIR /tmp
