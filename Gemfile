@@ -9,7 +9,7 @@ gem 'rails', '~> 6.1'
 
 gem 'pg'
 
-gem 'bootstrap-sass', '~> 3.3.6'
+gem 'bootstrap-sass', '~> 3.4.1'
 gem 'sassc-rails'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 5.0.0'
