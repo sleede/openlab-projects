@@ -4,7 +4,7 @@ class AddFuzzystrmatchExtension < ActiveRecord::Migration[5.2]
   end
 
   def down
-    execute('CREATE EXTENSION fuzzystrmatch;')
+    execute('DROP EXTENSION fuzzystrmatch;')
   end
 end
 
