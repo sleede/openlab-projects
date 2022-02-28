@@ -9,8 +9,10 @@ RUN apt-get update && \
       nodejs \
       supervisor
 
+RUN gem install bundler:2.2.33
+
 # throw errors if Gemfile has been modified since Gemfile.lock
-RUN bundle config --global frozen 1 --without dev
+RUN bundle config --global frozen 1 
 
 # Run Bundle in a cache efficient way
 WORKDIR /tmp
@@ -18,7 +20,7 @@ COPY Gemfile /tmp/
 COPY Gemfile.lock /tmp/
 
 #RUN bundle install
-RUN bundle install --binstubs
+RUN bundle install --binstubs --without dev
 
 # web app directories
 RUN mkdir -p /usr/src/app
