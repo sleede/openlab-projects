@@ -51,3 +51,7 @@ gem 'api-pagination'
 gem 'oj'
 
 gem 'pg_search'
+
+gem "sentry-ruby"
+gem "sentry-rails"
+gem "sentry-sidekiq"
