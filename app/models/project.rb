@@ -12,7 +12,7 @@ class Project < ActiveRecord::Base
     against: :search_vector,
     using: {
       tsearch: {
-        dictionary: Rails.application.secrets.postgresql_language_analyzer,
+        dictionary: Rails.application.secrets.postgres_language_analyzer,
         prefix: true,
         tsvector_column: 'search_vector'
       },

@@ -6,10 +6,10 @@ class AddSearchVectorTriggerToProjects < ActiveRecord::Migration[5.2]
 
       begin
         new.search_vector :=
-          setweight(to_tsvector('pg_catalog.#{Rails.application.secrets.postgresql_language_analyzer}', unaccent(coalesce(new.name, ''))), 'A') ||
-          setweight(to_tsvector('pg_catalog.#{Rails.application.secrets.postgresql_language_analyzer}', unaccent(coalesce(new.tags, ''))), 'B') ||
-          setweight(to_tsvector('pg_catalog.#{Rails.application.secrets.postgresql_language_analyzer}', unaccent(coalesce(new.description, ''))), 'C') ||
-          setweight(to_tsvector('pg_catalog.#{Rails.application.secrets.postgresql_language_analyzer}', unaccent(coalesce(new.steps_body, ''))), 'D');
+          setweight(to_tsvector('pg_catalog.#{Rails.application.secrets.postgres_language_analyzer}', unaccent(coalesce(new.name, ''))), 'A') ||
+          setweight(to_tsvector('pg_catalog.#{Rails.application.secrets.postgres_language_analyzer}', unaccent(coalesce(new.tags, ''))), 'B') ||
+          setweight(to_tsvector('pg_catalog.#{Rails.application.secrets.postgres_language_analyzer}', unaccent(coalesce(new.description, ''))), 'C') ||
+          setweight(to_tsvector('pg_catalog.#{Rails.application.secrets.postgres_language_analyzer}', unaccent(coalesce(new.steps_body, ''))), 'D');
 
         return new;
       end
