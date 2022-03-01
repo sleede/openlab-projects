@@ -1,4 +1,4 @@
-version: '2'
+version: '3'
 services:
   openlab-projects:
     image: sleede/openlab-projects
@@ -10,6 +10,7 @@ services:
     volumes:
       - ${PWD}/public/assets:/usr/src/app/public/assets
       - ${PWD}/log:/var/log/supervisor
+      - ${PWD}/config/supervisor.conf:/etc/supervisor/conf.d/openlab-projects.conf
     depends_on:
       - postgres
       - redis
