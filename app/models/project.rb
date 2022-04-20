@@ -8,6 +8,8 @@ class Project < ActiveRecord::Base
   # validations
   validates :name, :project_id, :project_path, presence: true
 
+  validates :project_id, uniqueness: { scope: :api_client }
+
   pg_search_scope :search,
     against: :search_vector,
     using: {
