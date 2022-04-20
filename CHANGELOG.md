@@ -1,3 +1,7 @@
+# 2022 April 20
+
+- fix wrong method ProjectsController#find_project
+- adds validation to project (uniqueness on project_id scope api_client)
 
 # v2 2022 February 28
 

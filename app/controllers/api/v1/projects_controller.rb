@@ -47,7 +47,7 @@ class Api::V1::ProjectsController < Api::V1::BaseController
 
   private
     def find_project
-      current_api_client.projects.find_by(project_id: params[:id])
+      current_api_client.projects.find_by!(project_id: params[:id])
     end
 
     def project_params
