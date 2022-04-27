@@ -15,7 +15,7 @@ Sentry.init do |config|
 
   config.breadcrumbs_logger = [:active_support_logger]
 
-  config.traces_sample_rate = 0.1
+  config.traces_sample_rate = Rails.application.secrets.sentry_sample_rate.to_f
 
   if Rails.application.secrets.sentry_environment.present?
     config.environment = Rails.application.secrets.sentry_environment

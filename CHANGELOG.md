@@ -1,3 +1,7 @@
+# 2022 April 27 
+
+- adds env variable SENTRY_SAMPLE_RATE
+
 # 2022 April 20
 
 - fix wrong method ProjectsController#find_project
